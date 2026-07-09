@@ -13,9 +13,34 @@
     const previewTitle = document.querySelector('.preview-title');
     const previewDescription = document.querySelector('.preview-description');
     const previewLink = document.querySelector('.preview-link');
+    const portraitFrames = Array.from(document.querySelectorAll('.portrait'));
+    const portraitColumn = document.querySelector('.portrait-column');
 
     let activeTab = 'projects';
     let lastFocusedElement = null;
+    let currentPortraitIndex = 0;
+
+    function showRandomPortrait() {
+        portraitFrames.forEach(function (frame) {
+            frame.classList.remove('is-active');
+        });
+        
+        let randomIndex = 0;
+        while (currentPortraitIndex == randomIndex) {
+            randomIndex = Math.floor(Math.random() * portraitFrames.length);
+        }
+
+        portraitFrames[randomIndex].classList.add('is-active');
+        currentPortraitIndex = randomIndex;
+    }
+
+    if (portraitFrames[0]) {
+        portraitFrames[0].classList.add('is-active');
+    }
+
+    if (portraitColumn) {
+        portraitColumn.addEventListener('mouseenter', showRandomPortrait);
+    }
 
     function renderCards(container, items, type) {
         container.innerHTML = '';

@@ -80,20 +80,28 @@ body.panel-open {
     object-fit: cover;
     border-radius: 4px;
     background-color: #faf9f6;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.portrait:first-child {
+    opacity: 1;
+}
+
+.portrait.is-active {
+    opacity: 1;
 }
 
 .portrait-smile {
     position: absolute;
     inset: 0;
-    opacity: 0;
 }
 
 .portrait-column:hover .portrait {
     opacity: 0;
 }
 
-.portrait-column:hover .portrait-smile {
+.portrait-column:hover .portrait.is-active {
     opacity: 1;
 }
 
@@ -147,6 +155,7 @@ body.panel-open {
 }
 
 .recent-work h2 {
+    font-family:'Courier New', Courier, monospace;
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.7rem;
@@ -161,12 +170,14 @@ body.panel-open {
 
 .recent-work-loading,
 .recent-work-empty {
+    font-family:'Courier New', Courier, monospace;
     font-size: 1rem;
     line-height: 1.5;
     color: #4a4a4a;
 }
 
 .recent-work-title {
+    /*font-family:'Courier New', Courier, monospace;*/
     font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.2;
@@ -179,6 +190,7 @@ body.panel-open {
 }
 
 .recent-work-description {
+    font-family:'Courier New', Courier, monospace;
     font-size: 1rem;
     line-height: 1.5;
     color: #4a4a4a;
@@ -188,6 +200,7 @@ body.panel-open {
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem;
+    font-family:'Courier New', Courier, monospace;
     font-size: 0.95rem;
     color: #6b6b6b;
 }
@@ -250,6 +263,14 @@ body.panel-open {
     font-weight: 700;
     letter-spacing: 0.5px;
     pointer-events: none;
+}
+
+.icon-image {
+    display: block;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    padding-right: 0.5px;
 }
 
 
