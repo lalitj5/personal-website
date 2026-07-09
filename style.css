@@ -66,6 +66,13 @@ body.panel-open {
     flex: 0 0 auto;
 }
 
+.portrait-wrapper {
+    position: relative;
+    display: block;
+    width: 280px;
+    height: 280px;
+}
+
 .portrait {
     display: block;
     width: 280px;
@@ -73,6 +80,21 @@ body.panel-open {
     object-fit: cover;
     border-radius: 4px;
     background-color: #faf9f6;
+    transition: opacity 0.2s ease;
+}
+
+.portrait-smile {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+}
+
+.portrait-column:hover .portrait {
+    opacity: 0;
+}
+
+.portrait-column:hover .portrait-smile {
+    opacity: 1;
 }
 
 
