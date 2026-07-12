@@ -5,7 +5,7 @@ const portfolio = {
             "title": "Fooling LLM-Based Code Verification Systems",
             "teaser": "We red-teamed a SOTA Code Verification Loop known as Clover.",
             "description": "LLM-based program verification systems promise stronger correctness guarantees than testing or type systems alone, but their robustness to adversarial inputs remains underexplored. We study Clover, a verification framework that checks correctness by enforcing mutual consistency across a program's natural language docstring, formal specification, and implementation. We ask whether an LLM can systematically generate adversarial programs that evade Clover's detection.",
-            "overleaf_url": "https://www.overleaf.com/read/gjsgkxmcrfrw#a4f552",
+            "overleaf_url": "./papers/clover.pdf",
             "github_url": "https://github.com/lalitj5/formalization-proj",
             "previewImage": "previews/beating-clover.png",
             "tags": ["Python", "AI Safety", "Program Synthesis"]

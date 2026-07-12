@@ -13,6 +13,7 @@
     const previewTitle = document.querySelector('.preview-title');
     const previewDescription = document.querySelector('.preview-description');
     const previewLink = document.querySelector('.preview-link');
+    const previewEmbedContainer = document.getElementById('preview-embed-container');
     const portraitFrames = Array.from(document.querySelectorAll('.portrait'));
     const portraitColumn = document.querySelector('.portrait-column');
 
@@ -167,7 +168,7 @@
             // console.log(repos)
             const repo = repos.find(function (item) {
                 return !item.fork;
-            }) || repos[0];
+            }) ||  repos[0];
 
             if (!repo) {
                 throw new Error('No repositories were found for this GitHub account.');
@@ -239,6 +240,12 @@
         previewImage.src = item.previewImage || '';
         previewImage.alt = 'Preview of ' + item.title;
 
+        // Clear any previous embed frame first
+        if (typeof previewEmbedContainer !== 'undefined') {
+            previewEmbedContainer.innerHTML = '';
+            previewEmbedContainer.style.display = 'none';
+        }
+
         if (type === 'writing') {
             previewOverleafLink.href = item.url;
             previewOverleafLink.textContent = 'Read article';
@@ -257,6 +264,19 @@
             if (item.overleaf_url) {
                 previewOverleafLink.href = item.overleaf_url;
                 previewOverleafLink.style.display = 'inline-block';
+
+                if (typeof previewEmbedContainer !== 'undefined') {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = item.overleaf_url;
+                    iframe.title = 'Embedded view of ' + item.title;
+                    iframe.style.width = '100%';
+                    iframe.style.height = '500px'; // Adjust height as needed
+                    iframe.style.border = 'none';
+                    iframe.style.marginTop = '1.5rem';
+                    
+                    previewEmbedContainer.appendChild(iframe);
+                    previewEmbedContainer.style.display = 'block';
+                }
             } else {
                 previewOverleafLink.style.display = 'none';
             }

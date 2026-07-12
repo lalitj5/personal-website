@@ -53,8 +53,8 @@ body.panel-open {
     align-items: center;
     justify-content: center;
     gap: 4rem;
-    padding-bottom: 3rem;
-    min-height: 85vh;
+    padding: 4rem 0;
+    min-height: auto;
 }
 
 
