@@ -1,25 +1,26 @@
 const portfolio = {
     projects: [
         {
-            id: "example-project",
-            title: "Example Project",
-            teaser: "A short one-line summary for the card.",
-            description: "A longer description shown in the preview panel. Explain what you built, why it matters, and what you learned. Replace this with your real project details.",
-            url: "https://github.com/lalitj5",
-            previewImage: "previews/example-project.svg",
-            tags: ["Python", "ML"]
+            "id": "formalization-proj",
+            "title": "Fooling LLM-Based Code Verification Systems",
+            "teaser": "We red-teamed a SOTA Code Verification Loop known as Clover.",
+            "description": "LLM-based program verification systems promise stronger correctness guarantees than testing or type systems alone, but their robustness to adversarial inputs remains underexplored. We study Clover, a verification framework that checks correctness by enforcing mutual consistency across a program's natural language docstring, formal specification, and implementation. We ask whether an LLM can systematically generate adversarial programs that evade Clover's detection.",
+            "overleaf_url": "https://www.overleaf.com/read/gjsgkxmcrfrw#a4f552",
+            "github_url": "https://github.com/lalitj5/formalization-proj",
+            "previewImage": "previews/beating-clover.png",
+            "tags": ["Python", "AI Safety", "Program Synthesis"]
         },
         {
-            id: "second-project",
-            title: "Another Project",
-            teaser: "Another teaser line for a different project.",
-            description: "Use this space for a fuller write-up — architecture choices, challenges, outcomes. Swap in a screenshot at previews/second-project.png when ready.",
-            url: "https://github.com/lalitj5",
-            previewImage: "previews/second-project.svg",
-            tags: ["JavaScript", "Web"]
-        }
+            "id": "mbox-reader",
+            "title": "Command Line .mbox File Search and Read",
+            "teaser": "Short Python-based CLI for querying MBOX files",
+            "description": "When graduating, I backed up my school emails into an unfamiliar .mbox format. Online viewers were littered with frustrating ads, so I built this simple terminal program to parse and access my emails easily.",
+            "github_url": "https://github.com/lalitj5/mbox-reader",
+            "previewImage": "previews/mbox-reader.png",
+            "tags": ["Python"]
+        },
     ],
-    
+
     writing: [
         {
             "id": "deepseek-architecture",

@@ -92,7 +92,7 @@
         });
     }
 
-    function renderRecentWorkCard(repo) {
+    function renderRecentWorkCard(repo, commitMessage) {
         recentWorkCard.innerHTML = '';
 
         const title = document.createElement('a');
@@ -100,8 +100,8 @@
         title.href = repo.html_url;
         title.target = '_blank';
         title.rel = 'noopener noreferrer';
-        title.textContent = repo.name;
-
+        title.textContent = repo.name + "  •     Last Commit - " + commitMessage;
+        
         const description = document.createElement('p');
         description.className = 'recent-work-description';
         description.textContent = repo.description || 'Open the repository to see what I’ve been building.';
@@ -164,6 +164,7 @@
             }
 
             const repos = await response.json();
+            // console.log(repos)
             const repo = repos.find(function (item) {
                 return !item.fork;
             }) || repos[0];
@@ -172,7 +173,16 @@
                 throw new Error('No repositories were found for this GitHub account.');
             }
 
-            renderRecentWorkCard(repo);
+            const commitResponse = await fetch(`https://api.github.com/repos/lalitj5/${repo.name}/commits?per_page=1`);
+            if (!commitResponse.ok) throw new Error('Could not fetch latest commit.');
+
+            const commits = await commitResponse.json();
+            const latestCommit = commits[0];
+
+            const commitMessage  = latestCommit.commit.message;
+            // console.log("Latest Commit Message:", commitMessage);
+
+            renderRecentWorkCard(repo, commitMessage);
         } catch (error) {
             renderRecentWorkError(error.message);
         }
@@ -229,8 +239,28 @@
         previewImage.src = item.previewImage || '';
         previewImage.alt = 'Preview of ' + item.title;
 
-        previewLink.href = item.url;
-        previewLink.textContent = type === 'projects' ? 'Open project' : 'Read article';
+        if (type === 'writing') {
+            previewOverleafLink.href = item.url;
+            previewOverleafLink.textContent = 'Read article';
+            previewOverleafLink.style.display = 'inline-block';
+            previewGitHubLink.style.display = 'none';
+        } else if (type === 'projects') {
+            previewOverleafLink.textContent = 'Open Paper';
+
+            if (item.github_url) {
+                previewGitHubLink.href = item.github_url;
+                previewGitHubLink.style.display = 'inline-block';
+            } else {
+                previewGitHubLink.style.display = 'none';
+            }
+
+            if (item.overleaf_url) {
+                previewOverleafLink.href = item.overleaf_url;
+                previewOverleafLink.style.display = 'inline-block';
+            } else {
+                previewOverleafLink.style.display = 'none';
+            }
+        }
 
         previewPanel.classList.add('is-open');
         previewPanel.setAttribute('aria-hidden', 'false');
