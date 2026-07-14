@@ -24,7 +24,7 @@ const portfolio = {
     writing: [
     {
         "id": "deepseek-architecture",
-        "title": "DeepSeek Architecture",
+        "title": "DeepSeek Architecture (Coming Soon!)",
         "teaser": "DeepSeek Architecture, Simply Explained.",
         "description": "Demystify the engineering breakthroughs behind DeepSeek's massive open-source models. Tailored for developers and AI researchers, this deep dive breaks down how Mixture-of-Experts (MoE), Multi-head Latent Attention (MLA), and cost-efficient training pipelines achieve GPT-4-level performance at a fraction of the traditional infrastructure cost.",
         "url": "https://newsletter.aibutsimple.com/p/deepseek-architecture",
@@ -33,7 +33,7 @@ const portfolio = {
     },
     {
         "id": "sparse-autoencoders",
-        "title": "Sparse Autoencoders, Simply Explained",
+        "title": "Sparse Autoencoders, Simply Explained (Coming Soon!)",
         "teaser": "Sparse Autoencoders, Simply Explained.",
         "description": "Crack open the LLM 'black box' with an accessible guide to mechanistic interpretability. Written for machine learning engineers and AI ethicists, this article explains how Sparse Autoencoders (SAEs) extract human-understandable concepts from raw neural network activations, transforming dense vectors into clear, distinct features.",
         "url": "https://newsletter.aibutsimple.com/p/sparse-autoencoders-simply-explained",
