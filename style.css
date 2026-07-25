@@ -335,6 +335,14 @@ body.panel-open {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    /*
+    height: 250px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding: 20px;
+    background-color: #f0e8d9;
+    border-radius: 10px;
+    */
 }
 
 .card {

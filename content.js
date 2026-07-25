@@ -1,6 +1,15 @@
 const portfolio = {
     projects: [
         {
+            "id": "Multi-Agent Harness",
+            "title": "Personal Multi-Agentic Coding Harness",
+            "teaser": "Building my own claude code",
+            "description": "As a college student, money doesn't come by often! Using NVIDIA's developer pack, I simulate the Mixture of Experts (MoE) architecture for coding agents and architected a multi-agent coding harness orchestrating DeepSeek V4 Flash as a planning agent and GLM 5.2 as a code-generation agent over NVIDIA’s free-tier inference endpoints (Saving me 20 dollars per month!). It also automates PR generation with human-in-the-loop approval (depicted above).",
+            "github_url": "https://github.com/lalitj5/agent",
+            "previewImage": "previews/projects/personal-harness.png",
+            "tags": ["Python", "FastAPI", "GithubAPI"]
+        },
+        {
             "id": "formalization-proj",
             "title": "Fooling LLM-Based Code Verification Systems",
             "teaser": "We red-teamed a SOTA Code Verification Loop known as Clover.",
