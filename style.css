@@ -5,6 +5,7 @@
 :root {
     --primary-color: #2c2c2c;
     --secondary-color: #9DFBC1;
+    --tertiary-color: #84caff;
     --light-color: #faf9f6;
     --border-color: #d4d0c8;
 }
@@ -25,6 +26,20 @@ body {
     background-color: #faf9f6;
     font-family: 'Caveat', cursive;
     color: #2c2c2c;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 3rem;
+    left: calc(50% - 450px);
+    width: 72px;
+    height: 72px;
+    background-image: radial-gradient(circle, var(--tertiary-color), 3px, transparent 3px);
+    background-size: 24px 24px;
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 0;
 }
 
 body.panel-open {
@@ -148,15 +163,30 @@ body.panel-open {
 }
 
 .recent-work {
+    position: relative;
+    overflow: hidden;
     margin-top: 0.2rem;
     padding: 1rem 1.1rem;
-    border: 1.5px solid #d4d0c8;
+    border: 2px solid #d4d0c8;
     border-radius: 4px;
     background-color: #fcfbf8;
 }
 
+.recent-work::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cline x1='90' y1='30' x2='30' y2='90' stroke='%2384caff' stroke-width='6'/%3E%3Cline x1='90' y1='50' x2='50' y2='90' stroke='%2384caff' stroke-width='6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 80px 80px;
+    pointer-events: none;
+}
+
 .recent-work h2 {
-    font-family:Georgia, 'Times New Roman', Times, serif
+    font-family:Georgia, 'Times New Roman', Times, serif;
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.7rem;
@@ -184,6 +214,8 @@ body.panel-open {
     line-height: 1.2;
     color: #2c2c2c;
     text-decoration: none;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .recent-work-title:hover {
@@ -715,6 +747,11 @@ body.panel-open {
         gap: 2rem;
         min-height: auto;
         padding-bottom: 2rem;
+    }
+
+    .portrait-wrapper {
+        width: 200px;
+        height: 200px;
     }
 
     .portrait {
