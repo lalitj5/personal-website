@@ -362,13 +362,23 @@ body.panel-open {
 
 /* --- Carousel --- */
 
+.writing-carousel[hidden] {
+    display: none;
+}
+
 .writing-carousel {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     width: 100%;
     overflow: hidden;
-    padding: 1rem 0;
+
+    padding: 1.25rem 1rem;
+    margin-bottom: 1.5rem;
+
+    background-color: #f0efe9;
+    border: 1.5px solid #d4d0c8;
+    border-radius: 4px;
 }
 
 .carousel-track-wrap {
