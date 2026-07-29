@@ -441,6 +441,9 @@ body.panel-open {
 
 .carousel-slide .card {
     width: 100%;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .carousel-arrow {
