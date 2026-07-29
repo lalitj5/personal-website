@@ -115,7 +115,28 @@
                     aria-labelledby="tab-writing"
                     hidden
                 >
+                    <input
+                        type="search"
+                        id="writing-search"
+                        class="writing-search"
+                        placeholder="Search articles…"
+                        aria-label="Search articles"
+                        autocomplete="off"
+                    >
+                    <button
+                        type="button"
+                        id="writing-view-toggle"
+                        class="writing-view-toggle"
+                        aria-pressed="false"
+                    >View as Carousel</button>
                     <div class="card-grid" id="grid-writing"></div>
+                    <div class="writing-carousel" id="carousel-writing" hidden aria-label="Article carousel">
+                        <button type="button" class="carousel-arrow carousel-arrow-prev" aria-label="Previous article">&#8249;</button>
+                        <div class="carousel-track-wrap">
+                            <div class="carousel-track" id="carousel-track"></div>
+                        </div>
+                        <button type="button" class="carousel-arrow carousel-arrow-next" aria-label="Next article">&#8250;</button>
+                    </div>
                 </div>
             </div>
 

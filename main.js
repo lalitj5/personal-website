@@ -3,6 +3,12 @@
     const panels = document.querySelectorAll('.tab-panel');
     const gridProjects = document.getElementById('grid-projects');
     const gridWriting = document.getElementById('grid-writing');
+    const writingSearch = document.getElementById('writing-search');
+    const writingViewToggle = document.getElementById('writing-view-toggle');
+    const carouselWriting = document.getElementById('carousel-writing');
+    const carouselTrack = document.getElementById('carousel-track');
+    const carouselPrev = carouselWriting.querySelector('.carousel-arrow-prev');
+    const carouselNext = carouselWriting.querySelector('.carousel-arrow-next');
 
     const previewPanel = document.querySelector('.preview-panel');
     const previewBackdrop = document.querySelector('.preview-backdrop');
@@ -20,6 +26,9 @@
     let activeTab = 'projects';
     let lastFocusedElement = null;
     let currentPortraitIndex = 0;
+    let filteredWriting = portfolio.writing.slice();
+    let writingViewMode = 'grid'; // 'grid' | 'carousel'
+    let carouselIndex = 0;
 
     function showRandomPortrait() {
         portraitFrames.forEach(function (frame) {
@@ -41,6 +50,96 @@
 
     if (portraitColumn) {
         portraitColumn.addEventListener('mouseenter', showRandomPortrait);
+    }
+
+    function applyCarouselPositions() {
+        const slides = carouselTrack.querySelectorAll('.carousel-slide');
+        if (!slides.length) return;
+
+        slides.forEach(function (slide, i) {
+            slide.classList.toggle('is-center', i === carouselIndex);
+        });
+
+        const slideWidth = slides[0].offsetWidth + 16; // 16px = 1rem gap
+        const wrapWidth = carouselTrack.parentElement.offsetWidth;
+        const offset = (wrapWidth / 2) - (slideWidth / 2) - (carouselIndex * slideWidth);
+        carouselTrack.style.transform = 'translateX(' + offset + 'px)';
+    }
+
+    function renderCarousel(items) {
+        carouselTrack.innerHTML = '';
+
+        if (items.length === 0) {
+            const empty = document.createElement('p');
+            empty.className = 'writing-search-empty';
+            empty.style.padding = '1rem 0';
+            empty.textContent = 'No articles match your search.';
+            carouselTrack.appendChild(empty);
+            return;
+        }
+
+        items.forEach(function (item) {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+
+            const card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'card';
+
+            const title = document.createElement('h3');
+            title.className = 'card-title';
+            title.textContent = item.title;
+
+            const teaser = document.createElement('p');
+            teaser.className = 'card-teaser';
+            teaser.textContent = item.teaser;
+
+            const meta = document.createElement('p');
+            meta.className = 'card-meta';
+            meta.textContent = formatDate(item.date);
+
+            card.appendChild(title);
+            card.appendChild(teaser);
+            card.appendChild(meta);
+
+            card.addEventListener('click', function () {
+                openPreview(item, 'writing');
+            });
+
+            slide.appendChild(card);
+            carouselTrack.appendChild(slide);
+        });
+
+        requestAnimationFrame(applyCarouselPositions);
+    }
+
+    function advanceCarousel(direction) {
+        const slides = carouselTrack.querySelectorAll('.carousel-slide');
+        if (!slides.length) return;
+        carouselIndex = (carouselIndex + direction + slides.length) % slides.length;
+        applyCarouselPositions();
+    }
+
+    function renderWritingGrid(items) {
+        filteredWriting = items;
+        carouselIndex = 0;
+
+        if (writingViewMode === 'carousel') {
+            renderCarousel(items);
+            return;
+        }
+
+        gridWriting.innerHTML = '';
+
+        if (items.length === 0) {
+            const empty = document.createElement('p');
+            empty.className = 'writing-search-empty';
+            empty.textContent = 'No articles match your search.';
+            gridWriting.appendChild(empty);
+            return;
+        }
+
+        renderCards(gridWriting, items, 'writing');
     }
 
     function renderCards(container, items, type) {
@@ -192,6 +291,19 @@
     function switchTab(tabName) {
         activeTab = tabName;
 
+        if (tabName !== 'writing') {
+            writingSearch.value = '';
+            if (writingViewMode === 'carousel') {
+                writingViewMode = 'grid';
+                writingViewToggle.textContent = 'View as Carousel';
+                writingViewToggle.classList.remove('is-active');
+                writingViewToggle.setAttribute('aria-pressed', 'false');
+                gridWriting.hidden = false;
+                carouselWriting.hidden = true;
+            }
+            renderWritingGrid(portfolio.writing);
+        }
+
         tabs.forEach(function (tab) {
             const isActive = tab.id === 'tab-' + tabName;
             tab.classList.toggle('is-active', isActive);
@@ -312,6 +424,42 @@
     });
 
     renderCards(gridProjects, portfolio.projects, 'projects');
-    renderCards(gridWriting, portfolio.writing, 'writing');
+    renderWritingGrid(portfolio.writing);
     loadRecentWork();
+
+    writingViewToggle.addEventListener('click', function () {
+        if (writingViewMode === 'grid') {
+            writingViewMode = 'carousel';
+            writingViewToggle.textContent = 'View as Grid';
+            writingViewToggle.classList.add('is-active');
+            writingViewToggle.setAttribute('aria-pressed', 'true');
+            gridWriting.hidden = true;
+            carouselWriting.hidden = false;
+            renderCarousel(filteredWriting);
+        } else {
+            writingViewMode = 'grid';
+            writingViewToggle.textContent = 'View as Carousel';
+            writingViewToggle.classList.remove('is-active');
+            writingViewToggle.setAttribute('aria-pressed', 'false');
+            gridWriting.hidden = false;
+            carouselWriting.hidden = true;
+            renderCards(gridWriting, filteredWriting, 'writing');
+        }
+    });
+
+    carouselPrev.addEventListener('click', function () { advanceCarousel(-1); });
+    carouselNext.addEventListener('click', function () { advanceCarousel(1); });
+
+    writingSearch.addEventListener('input', function () {
+        const query = writingSearch.value.trim().toLowerCase();
+        if (!query) {
+            renderWritingGrid(portfolio.writing);
+            return;
+        }
+        const results = portfolio.writing.filter(function (item) {
+            return item.title.toLowerCase().includes(query) ||
+                   item.teaser.toLowerCase().includes(query);
+        });
+        renderWritingGrid(results);
+    });
 })();
