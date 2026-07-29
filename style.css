@@ -30,7 +30,7 @@ body {
 
 body::before {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 3rem;
     left: calc(50% - 450px);
     width: 72px;
