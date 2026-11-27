@@ -46,10 +46,10 @@
                 <nav class="side-nav" aria-label="Portfolio sections">
             <div class="tab-bar" role="tablist" aria-label="Portfolio sections">
                 <button
-                    class="tab is-active"
+                    class="tab"
                     role="tab"
                     id="tab-projects"
-                    aria-selected="true"
+                    aria-selected="false"
                     aria-controls="panel-projects"
                 >Projects</button>
                 <button class="tab" role="tab" id="tab-essays" aria-selected="false" aria-controls="panel-essays" tabindex="-1">Writing</button>
@@ -103,13 +103,14 @@
 
                 </div>
 
-                <section class="portfolio" aria-label="Work">
+                <section class="portfolio" aria-label="Work" hidden>
             <div class="tab-panels">
                 <div
                     class="tab-panel"
                     id="panel-projects"
                     role="tabpanel"
                     aria-labelledby="tab-projects"
+                    hidden
                 >
                     <div class="card-grid" id="grid-projects"></div>
                 </div>

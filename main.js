@@ -3,6 +3,7 @@
     const panels = document.querySelectorAll('.tab-panel');
     const gridProjects = document.getElementById('grid-projects');
     const gridWriting = document.getElementById('grid-writing');
+    const portfolioSection = document.querySelector('.portfolio');
     const gridEssays = document.getElementById('grid-essays');
     const gridGallery = document.getElementById('grid-gallery');
     const resumeContent = document.getElementById('resume-content');
@@ -27,7 +28,7 @@
     const portraitFrames = Array.from(document.querySelectorAll('.portrait'));
     const portraitColumn = document.querySelector('.portrait-column');
 
-    let activeTab = 'projects';
+    let activeTab = null; // null = home (nothing selected)
     let lastFocusedElement = null;
     let currentPortraitIndex = 0;
     let filteredWriting = portfolio.writing.slice();
@@ -312,8 +313,10 @@
             const isActive = tab.id === 'tab-' + tabName;
             tab.classList.toggle('is-active', isActive);
             tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-            tab.tabIndex = isActive ? 0 : -1;
+            tab.tabIndex = (isActive || (!tabName && tab === tabs[0])) ? 0 : -1;
         });
+
+        portfolioSection.hidden = !tabName;
 
         panels.forEach(function (panel) {
             const isActive = panel.id === 'panel-' + tabName;
@@ -324,7 +327,8 @@
     tabs.forEach(function (tab) {
         tab.addEventListener('click', function () {
             const tabName = tab.id.replace('tab-', '');
-            switchTab(tabName);
+            // Clicking the selected tab again deselects it and returns to the home view
+            switchTab(tabName === activeTab ? null : tabName);
         });
 
         tab.addEventListener('keydown', function (event) {
