@@ -36,6 +36,7 @@
     let carouselIndex = 0;
 
     function showRandomPortrait() {
+        if (portraitFrames.length < 2) return;
         portraitFrames.forEach(function (frame) {
             frame.classList.remove('is-active');
         });
@@ -53,8 +54,9 @@
         portraitFrames[0].classList.add('is-active');
     }
 
-    if (portraitColumn) {
-        portraitColumn.addEventListener('mouseenter', showRandomPortrait);
+    const portraitWrapper = document.querySelector('.portrait-wrapper');
+    if (portraitWrapper) {
+        portraitWrapper.addEventListener('mouseenter', showRandomPortrait);
     }
 
     function applyCarouselPositions() {
