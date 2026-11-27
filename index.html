@@ -43,23 +43,42 @@
                     >
                 -->
                 </div>
+                <nav class="side-nav" aria-label="Portfolio sections">
+            <div class="tab-bar" role="tablist" aria-label="Portfolio sections">
+                <button
+                    class="tab is-active"
+                    role="tab"
+                    id="tab-projects"
+                    aria-selected="true"
+                    aria-controls="panel-projects"
+                >Projects</button>
+                <button
+                    class="tab"
+                    role="tab"
+                    id="tab-writing"
+                    aria-selected="false"
+                    aria-controls="panel-writing"
+                    tabindex="-1"
+                >Explainers</button>
+                <button class="tab" role="tab" id="tab-essays" aria-selected="false" aria-controls="panel-essays" tabindex="-1">Writing</button>
+                <button class="tab" role="tab" id="tab-gallery" aria-selected="false" aria-controls="panel-gallery" tabindex="-1">Gallery</button>
+                <button class="tab" role="tab" id="tab-resume" aria-selected="false" aria-controls="panel-resume" tabindex="-1">Resume</button>
+            </div>
+                </nav>
             </div>
 
             <div class="content-column">
 
                 <h1 class="name">Lalit Aditya Julapalli</h1>
 
-                <p class="bio">Math & Computing @ GaTech <\====\> lalit@gatech.edu</p>
+                <p class="bio">Working on AI Safety @ Georgia Tech <\====\> lalit@gatech.edu</p>
 
                 <hr class="divider">
-
-                <p class="belief">Working on AI Safety @ Georgia Tech</p>
-                <p class="belief">Interested in Model Eval Awareness and making the world a better place</p>
+                <p class="belief">Hey there! I'm Lalit (Lah-lith) and I study Math and CS at Georgia Tech. I'm an organizer at the AI Safety Initiative at Georgia Tech, helping run events and facilitating technical and policy fellowships. I want to learn how to make the world a better place, and I tread the path of AI Safety looking for where there's no footprints ahead. In my free time, I try my hand at drawing (pun intended) and one day will start painting. But I think I need to see more, feel more to paint. Currently reading <em>Exhalation</em> by Ted Chiang.</p>
                 <ul class="focus-chips" aria-label="Research focus areas">
                     <li>Eval Awareness</li>
-                    <li>Red-Teaming &amp; Verification</li>
-                    <li>Reward Hacking</li>
-                    <li>Interpretability</li>
+                    <li>Red-Teaming</li>
+                    <li>Formal Verification</li>
                 </ul>
                 <section class="recent-work" aria-labelledby="recent-work-title">
                     <h2 id="recent-work-title">What I’m most recently working on</h2>
@@ -90,33 +109,7 @@
 
                 </div>
 
-            </div>
-
-        </main>
-
-        <section class="portfolio" aria-label="Work">
-
-            <div class="tab-bar" role="tablist" aria-label="Portfolio sections">
-                <button
-                    class="tab is-active"
-                    role="tab"
-                    id="tab-projects"
-                    aria-selected="true"
-                    aria-controls="panel-projects"
-                >Projects</button>
-                <button
-                    class="tab"
-                    role="tab"
-                    id="tab-writing"
-                    aria-selected="false"
-                    aria-controls="panel-writing"
-                    tabindex="-1"
-                >Explainers</button>
-                <button class="tab" role="tab" id="tab-essays" aria-selected="false" aria-controls="panel-essays" tabindex="-1">Writing</button>
-                <button class="tab" role="tab" id="tab-gallery" aria-selected="false" aria-controls="panel-gallery" tabindex="-1">Gallery</button>
-                <button class="tab" role="tab" id="tab-resume" aria-selected="false" aria-controls="panel-resume" tabindex="-1">Resume</button>
-            </div>
-
+                <section class="portfolio" aria-label="Work">
             <div class="tab-panels">
                 <div
                     class="tab-panel"
@@ -167,7 +160,12 @@
                 </div>
             </div>
 
-        </section>
+                </section>
+
+            </div>
+
+        </main>
+
 
     </div>
 
