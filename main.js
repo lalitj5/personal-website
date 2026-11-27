@@ -295,6 +295,19 @@
         }
     }
 
+    function animateScrollBy(distance, duration) {
+        if (Math.abs(distance) < 1) return;
+        const startY = window.scrollY;
+        const startTime = performance.now();
+        function step(now) {
+            const t = Math.min((now - startTime) / duration, 1);
+            const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; // ease in-out
+            window.scrollTo(0, startY + distance * eased);
+            if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
     function switchTab(tabName) {
         activeTab = tabName;
 
@@ -331,6 +344,11 @@
             const tabName = tab.id.replace('tab-', '');
             // Clicking the selected tab again deselects it and returns to the home view
             switchTab(tabName === activeTab ? null : tabName);
+            if (activeTab) {
+                // Scroll half the way to the content, slowly (native smooth scroll can't be slowed)
+                const distance = (portfolioSection.getBoundingClientRect().top - 24) / 2;
+                animateScrollBy(distance, 1000);
+            }
         });
 
         tab.addEventListener('keydown', function (event) {
@@ -348,7 +366,7 @@
     function openPreview(item, type) {
         lastFocusedElement = document.activeElement;
 
-        previewTitle.textContent = item.title;
+        previewTitle.textContent = item.title || '';
         previewDescription.textContent = item.description || item.caption || '';
 
         if (type === 'projects' && item.tags && item.tags.length) {
@@ -365,7 +383,7 @@
         }
 
         previewImage.src = item.image || item.previewImage || '';
-        previewImage.alt = 'Preview of ' + item.title;
+        previewImage.alt = item.alt || (item.title ? 'Preview of ' + item.title : 'Gallery photo');
 
         // Clear any previous embed frame first
         if (typeof previewEmbedContainer !== 'undefined') {
@@ -449,6 +467,36 @@
         container.appendChild(empty);
     }
 
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    let lightboxOpener = null;
+
+    function openLightbox(item, opener) {
+        lightboxOpener = opener;
+        lightboxImage.src = item.image;
+        lightboxImage.alt = item.alt || item.title || 'Gallery photo';
+        lightbox.hidden = false;
+        document.body.classList.add('panel-open');
+        lightbox.querySelector('.lightbox-close').focus();
+    }
+
+    function closeLightbox() {
+        lightbox.hidden = true;
+        lightboxImage.src = '';
+        document.body.classList.remove('panel-open');
+        if (lightboxOpener) {
+            lightboxOpener.focus();
+            lightboxOpener = null;
+        }
+    }
+
+    lightbox.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !lightbox.hidden) {
+            closeLightbox();
+        }
+    });
+
     function renderGallery(items) {
         if (!items.length) {
             renderEmpty(gridGallery, 'Photos and art coming soon.');
@@ -461,10 +509,10 @@
             tile.className = 'gallery-tile';
             const img = document.createElement('img');
             img.src = item.image;
-            img.alt = item.title;
+            img.alt = item.alt || item.title || 'Gallery photo';
             img.loading = 'lazy';
             tile.appendChild(img);
-            tile.addEventListener('click', function () { openPreview(item, 'gallery'); });
+            tile.addEventListener('click', function () { openLightbox(item, tile); });
             gridGallery.appendChild(tile);
         });
     }

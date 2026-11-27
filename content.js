@@ -237,8 +237,13 @@ const portfolio = {
     ],
 
     // Photography / art.
-    // Fields: id, title, caption, image (web-sized file), category ("Photography" | "Art"), date
-    gallery: [],
+    // Fields: image (web-sized file). Optional: alt, title, caption, category ("Photography" | "Art"), date
+    gallery: [
+        { image: "images/gallery/ball.jpg" },
+        { image: "images/gallery/flower.jpg" },
+        { image: "images/gallery/gotcha.jpg" },
+        { image: "images/gallery/righthandrule.jpg" }
+    ],
 
     // Resume. Fill in the TODO items; set pdf to e.g. "papers/resume.pdf" to show a download button.
     resume: {
