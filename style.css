@@ -582,6 +582,35 @@ body.panel-open {
     font-size: 1.1rem;
 }
 
+.resume-entry-title,
+.resume-entry-sub {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.resume-entry-sub {
+    font-style: italic;
+    font-size: 1.05rem;
+    color: #4a4a4a;
+}
+
+.resume-right {
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.resume-bullets {
+    margin: 0.3rem 0 0 1.2rem;
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    line-height: 1.45;
+}
+
+.resume-bullets li {
+    margin-bottom: 0.25rem;
+}
+
 .resume-entry-detail {
     font-size: 1.05rem;
     color: #4a4a4a;

@@ -483,11 +483,32 @@
             section.entries.forEach(function (entry) {
                 const row = document.createElement('div');
                 row.className = 'resume-entry';
-                if (entry.title) {
-                    const t = document.createElement('p');
-                    t.className = 'resume-entry-title';
-                    t.textContent = entry.title + (entry.meta ? ' - ' + entry.meta : '');
-                    row.appendChild(t);
+                function addRow(cls, left, right) {
+                    if (!left && !right) return;
+                    const line = document.createElement('p');
+                    line.className = cls;
+                    const l = document.createElement('span');
+                    l.textContent = left || '';
+                    line.appendChild(l);
+                    if (right) {
+                        const r = document.createElement('span');
+                        r.className = 'resume-right';
+                        r.textContent = right;
+                        line.appendChild(r);
+                    }
+                    row.appendChild(line);
+                }
+                addRow('resume-entry-title', entry.title, entry.location);
+                addRow('resume-entry-sub', entry.subtitle, entry.date);
+                if (entry.bullets && entry.bullets.length) {
+                    const ul = document.createElement('ul');
+                    ul.className = 'resume-bullets';
+                    entry.bullets.forEach(function (text) {
+                        const li = document.createElement('li');
+                        li.textContent = text;
+                        ul.appendChild(li);
+                    });
+                    row.appendChild(ul);
                 }
                 if (entry.detail) {
                     const d = document.createElement('p');
