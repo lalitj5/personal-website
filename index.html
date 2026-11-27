@@ -55,6 +55,12 @@
 
                 <p class="belief">Working on AI Safety @ Georgia Tech</p>
                 <p class="belief">Interested in Model Eval Awareness and making the world a better place</p>
+                <ul class="focus-chips" aria-label="Research focus areas">
+                    <li>Eval Awareness</li>
+                    <li>Red-Teaming &amp; Verification</li>
+                    <li>Reward Hacking</li>
+                    <li>Interpretability</li>
+                </ul>
                 <section class="recent-work" aria-labelledby="recent-work-title">
                     <h2 id="recent-work-title">What I’m most recently working on</h2>
                     <div class="recent-work-card" id="recent-work-card" aria-live="polite">
@@ -80,6 +86,8 @@
                        <img src="icons/substack_logo.png" width="400" alt="substack_logo" class="icon-image">
                     </a>
 
+                    <a href="#resume" class="resume-link" id="resume-link">Resume &rarr;</a>
+
                 </div>
 
             </div>
@@ -103,7 +111,10 @@
                     aria-selected="false"
                     aria-controls="panel-writing"
                     tabindex="-1"
-                >Writing</button>
+                >Explainers</button>
+                <button class="tab" role="tab" id="tab-essays" aria-selected="false" aria-controls="panel-essays" tabindex="-1">Writing</button>
+                <button class="tab" role="tab" id="tab-gallery" aria-selected="false" aria-controls="panel-gallery" tabindex="-1">Gallery</button>
+                <button class="tab" role="tab" id="tab-resume" aria-selected="false" aria-controls="panel-resume" tabindex="-1">Resume</button>
             </div>
 
             <div class="tab-panels">
@@ -144,6 +155,15 @@
                         <button type="button" class="carousel-arrow carousel-arrow-next" aria-label="Next article">&#8250;</button>
                     </div>
                     <div class="card-grid" id="grid-writing"></div>
+                </div>
+                <div class="tab-panel" id="panel-essays" role="tabpanel" aria-labelledby="tab-essays" hidden>
+                    <div class="card-grid" id="grid-essays"></div>
+                </div>
+                <div class="tab-panel" id="panel-gallery" role="tabpanel" aria-labelledby="tab-gallery" hidden>
+                    <div class="gallery-grid" id="grid-gallery"></div>
+                </div>
+                <div class="tab-panel" id="panel-resume" role="tabpanel" aria-labelledby="tab-resume" hidden>
+                    <div class="resume" id="resume-content"></div>
                 </div>
             </div>
 

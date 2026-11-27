@@ -3,6 +3,10 @@
     const panels = document.querySelectorAll('.tab-panel');
     const gridProjects = document.getElementById('grid-projects');
     const gridWriting = document.getElementById('grid-writing');
+    const gridEssays = document.getElementById('grid-essays');
+    const gridGallery = document.getElementById('grid-gallery');
+    const resumeContent = document.getElementById('resume-content');
+    const tabOrder = Array.from(tabs).map(function (t) { return t.id.replace('tab-', ''); });
     const writingSearch = document.getElementById('writing-search');
     const writingViewToggle = document.getElementById('writing-view-toggle');
     const carouselWriting = document.getElementById('carousel-writing');
@@ -326,7 +330,9 @@
         tab.addEventListener('keydown', function (event) {
             if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
                 event.preventDefault();
-                const nextTab = event.key === 'ArrowRight' ? 'writing' : 'projects';
+                const i = tabOrder.indexOf(tabName);
+                const step = event.key === 'ArrowRight' ? 1 : -1;
+                const nextTab = tabOrder[(i + step + tabOrder.length) % tabOrder.length];
                 switchTab(nextTab);
                 document.getElementById('tab-' + nextTab).focus();
             }
@@ -337,19 +343,22 @@
         lastFocusedElement = document.activeElement;
 
         previewTitle.textContent = item.title;
-        previewDescription.textContent = item.description;
+        previewDescription.textContent = item.description || item.caption || '';
 
         if (type === 'projects' && item.tags && item.tags.length) {
             previewMeta.textContent = item.tags.join(' · ');
             previewMeta.hidden = false;
-        } else if (type === 'writing' && item.date) {
+        } else if (type === 'gallery') {
+            previewMeta.textContent = [item.category, item.date ? formatDate(item.date) : ''].filter(Boolean).join(' · ');
+            previewMeta.hidden = !previewMeta.textContent;
+        } else if ((type === 'writing' || type === 'essays') && item.date) {
             previewMeta.textContent = formatDate(item.date);
             previewMeta.hidden = false;
         } else {
             previewMeta.hidden = true;
         }
 
-        previewImage.src = item.previewImage || '';
+        previewImage.src = item.image || item.previewImage || '';
         previewImage.alt = 'Preview of ' + item.title;
 
         // Clear any previous embed frame first
@@ -358,9 +367,12 @@
             previewEmbedContainer.style.display = 'none';
         }
 
-        if (type === 'writing') {
+        if (type === 'gallery') {
+            previewOverleafLink.style.display = 'none';
+            previewGitHubLink.style.display = 'none';
+        } else if (type === 'writing' || type === 'essays') {
             previewOverleafLink.href = item.url;
-            previewOverleafLink.textContent = 'Read article';
+            previewOverleafLink.textContent = type === 'essays' ? 'Read essay' : 'Read article';
             previewOverleafLink.style.display = 'inline-block';
             previewGitHubLink.style.display = 'none';
         } else if (type === 'projects') {
@@ -423,7 +435,92 @@
         }
     });
 
+    function renderEmpty(container, message) {
+        container.innerHTML = '';
+        const empty = document.createElement('p');
+        empty.className = 'writing-search-empty';
+        empty.textContent = message;
+        container.appendChild(empty);
+    }
+
+    function renderGallery(items) {
+        if (!items.length) {
+            renderEmpty(gridGallery, 'Photos and art coming soon.');
+            return;
+        }
+        gridGallery.innerHTML = '';
+        items.forEach(function (item) {
+            const tile = document.createElement('button');
+            tile.type = 'button';
+            tile.className = 'gallery-tile';
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.alt = item.title;
+            img.loading = 'lazy';
+            tile.appendChild(img);
+            tile.addEventListener('click', function () { openPreview(item, 'gallery'); });
+            gridGallery.appendChild(tile);
+        });
+    }
+
+    function renderResume(data) {
+        resumeContent.innerHTML = '';
+        if (data.pdf) {
+            const dl = document.createElement('a');
+            dl.className = 'preview-link';
+            dl.href = data.pdf;
+            dl.target = '_blank';
+            dl.rel = 'noopener noreferrer';
+            dl.textContent = 'Download PDF';
+            resumeContent.appendChild(dl);
+        }
+        data.sections.forEach(function (section) {
+            const block = document.createElement('section');
+            block.className = 'resume-section';
+            const h = document.createElement('h3');
+            h.textContent = section.heading;
+            block.appendChild(h);
+            section.entries.forEach(function (entry) {
+                const row = document.createElement('div');
+                row.className = 'resume-entry';
+                if (entry.title) {
+                    const t = document.createElement('p');
+                    t.className = 'resume-entry-title';
+                    t.textContent = entry.title + (entry.meta ? ' - ' + entry.meta : '');
+                    row.appendChild(t);
+                }
+                if (entry.detail) {
+                    const d = document.createElement('p');
+                    d.className = 'resume-entry-detail';
+                    d.textContent = entry.detail;
+                    row.appendChild(d);
+                }
+                block.appendChild(row);
+            });
+            resumeContent.appendChild(block);
+        });
+    }
+
     renderCards(gridProjects, portfolio.projects, 'projects');
+    if (portfolio.essays.length) {
+        renderCards(gridEssays, portfolio.essays, 'essays');
+    } else {
+        renderEmpty(gridEssays, 'Essays and research notes coming soon.');
+    }
+    renderGallery(portfolio.gallery);
+    renderResume(portfolio.resume);
+
+    const resumeLink = document.getElementById('resume-link');
+    if (resumeLink) {
+        resumeLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            switchTab('resume');
+            document.querySelector('.portfolio').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    if (window.location.hash && tabOrder.indexOf(window.location.hash.slice(1)) !== -1) {
+        switchTab(window.location.hash.slice(1));
+    }
     renderWritingGrid(portfolio.writing);
     loadRecentWork();
 

@@ -202,4 +202,45 @@ const portfolio = {
         "previewImage": "previews/articles/AgenticAICover.png",
         "date": "2025-07-14"
     }
-    ]};
+    ],
+
+    // Original writing: essays, research notes, reflections.
+    // Fields: id, title, teaser, description, url, date ("YYYY-MM-DD"), optional previewImage
+    essays: [],
+
+    // Photography / art.
+    // Fields: id, title, caption, image (web-sized file), category ("Photography" | "Art"), date
+    gallery: [],
+
+    // Resume. Fill in the TODO items; set pdf to e.g. "papers/resume.pdf" to show a download button.
+    resume: {
+        pdf: "",
+        sections: [
+            {
+                heading: "Education",
+                entries: [
+                    { title: "Georgia Institute of Technology", meta: "B.S. Math & Computing", detail: "TODO: dates, GPA, relevant coursework" }
+                ]
+            },
+            {
+                heading: "Research",
+                entries: [
+                    { title: "AI Safety Research @ Georgia Tech", meta: "TODO: dates", detail: "TODO: model evaluation awareness work" },
+                    { title: "Fooling LLM-Based Code Verification Systems", meta: "Red-teaming Clover", detail: "See the Projects tab for the paper." }
+                ]
+            },
+            {
+                heading: "Experience",
+                entries: [
+                    { title: "AI But Simple", meta: "TODO: role, dates", detail: "TODO: newsletter writing" }
+                ]
+            },
+            {
+                heading: "Skills",
+                entries: [
+                    { title: "", meta: "", detail: "Python, FastAPI, TODO" }
+                ]
+            }
+        ]
+    }
+};
