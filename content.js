@@ -242,7 +242,7 @@ const portfolio = {
 
     // Resume. Fill in the TODO items; set pdf to e.g. "papers/resume.pdf" to show a download button.
     resume: {
-        pdf: "resume/Lalit_Aditya_Julapalli_Resume_.pdf",
+        pdf: "",
         // Text copied verbatim from the PDF. Entry fields: title, location (right of title),
         // subtitle, date (right of subtitle), bullets, detail.
         sections: [
