@@ -33,19 +33,19 @@ const portfolio = {
     writing: [
     {
         "id": "deepseek-architecture",
-        "title": "DeepSeek Architecture (Coming Soon!)",
+        "title": "DeepSeek Architecture",
         "teaser": "DeepSeek Architecture, Simply Explained.",
         "description": "Demystify the engineering breakthroughs behind DeepSeek's massive open-source models. Tailored for developers and AI researchers, this deep dive breaks down how Mixture-of-Experts (MoE), Multi-head Latent Attention (MLA), and cost-efficient training pipelines achieve GPT-4-level performance at a fraction of the traditional infrastructure cost.",
-        "url": "https://newsletter.aibutsimple.com/p/deepseek-architecture",
+        "url": "https://www.aibutsimple.com/p/how-deepseek-s-architecture-actually-works",
         "previewImage": "previews/articles/DeepSeekArchitectureCover.png",
         "date": "2026-08-24"
     },
     {
         "id": "sparse-autoencoders",
-        "title": "Sparse Autoencoders, Simply Explained (Coming Soon!)",
+        "title": "Sparse Autoencoders, Simply Explained",
         "teaser": "Sparse Autoencoders, Simply Explained.",
         "description": "Crack open the LLM 'black box' with an accessible guide to mechanistic interpretability. Written for machine learning engineers and AI ethicists, this article explains how Sparse Autoencoders (SAEs) extract human-understandable concepts from raw neural network activations, transforming dense vectors into clear, distinct features.",
-        "url": "https://newsletter.aibutsimple.com/p/sparse-autoencoders-simply-explained",
+        "url": "https://www.aibutsimple.com/p/sparse-autoencoders-saes-simply-explained",
         "previewImage": "previews/articles/SAEInterpCover.png",
         "date": "2026-07-27"
     },
@@ -261,7 +261,7 @@ const portfolio = {
                         date: "May 2029",
                         bullets: [
                             "Coursework: Machine Learning, Data Structures and Algorithm Design, Quantum Computing",
-                            "Clubs: AI Safety Initiative @ GT Operations & Technical Fellow, HackGT Operations Co-Director, CS 1301 TA"
+                            "Clubs: AI Safety Initiative @ GT Operations Team & Fellowships Facilitator, HackGT Operations Co-Director, CS 1301 TA"
                         ]
                     }
                 ]
