@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#f0efe9"/>
+  <rect x="40" y="40" width="720" height="420" fill="#faf9f6" stroke="#d4d0c8" stroke-width="2"/>
+  <text x="400" y="260" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#4a4a4a">Example Project</text>
+  <text x="400" y="300" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#888">Replace with a screenshot</text>
+</svg>
