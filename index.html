@@ -8,7 +8,7 @@
     <!-- Caveat: handwritten-style font, weights 400 (regular) and 700 (bold) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/images/portrait.png">
 
     <link rel="stylesheet" href="style.css">
@@ -52,7 +52,9 @@
                     aria-selected="true"
                     aria-controls="panel-projects"
                 >Projects</button>
-                <button
+                <button class="tab" role="tab" id="tab-essays" aria-selected="false" aria-controls="panel-essays" tabindex="-1">Writing</button>
+                <button class="tab" role="tab" id="tab-gallery" aria-selected="false" aria-controls="panel-gallery" tabindex="-1">Gallery</button>
+                                <button
                     class="tab"
                     role="tab"
                     id="tab-writing"
@@ -60,8 +62,6 @@
                     aria-controls="panel-writing"
                     tabindex="-1"
                 >Explainers</button>
-                <button class="tab" role="tab" id="tab-essays" aria-selected="false" aria-controls="panel-essays" tabindex="-1">Writing</button>
-                <button class="tab" role="tab" id="tab-gallery" aria-selected="false" aria-controls="panel-gallery" tabindex="-1">Gallery</button>
                 <button class="tab" role="tab" id="tab-resume" aria-selected="false" aria-controls="panel-resume" tabindex="-1">Resume</button>
             </div>
                 </nav>
@@ -71,15 +71,10 @@
 
                 <h1 class="name">Lalit Aditya Julapalli</h1>
 
-                <p class="bio">Working on AI Safety @ Georgia Tech <\====\> lalit@gatech.edu</p>
+                <p class="bio">Working on AI Safety @ Georgia Tech <\====\> lalit[at]gatech[dot]edu</p>
 
                 <hr class="divider">
                 <p class="belief">Hey there! I'm Lalit (Lah-lith) and I study Math and CS at Georgia Tech. I'm an organizer at the AI Safety Initiative at Georgia Tech, helping run events and facilitating technical and policy fellowships. I want to learn how to make the world a better place, and I tread the path of AI Safety looking for where there's no footprints ahead. In my free time, I try my hand at drawing (pun intended) and one day will start painting. But I think I need to see more, feel more to paint. Currently reading <em>Exhalation</em> by Ted Chiang.</p>
-                <ul class="focus-chips" aria-label="Research focus areas">
-                    <li>Eval Awareness</li>
-                    <li>Red-Teaming</li>
-                    <li>Formal Verification</li>
-                </ul>
                 <section class="recent-work" aria-labelledby="recent-work-title">
                     <h2 id="recent-work-title">What I’m most recently working on</h2>
                     <div class="recent-work-card" id="recent-work-card" aria-live="polite">
@@ -105,7 +100,6 @@
                        <img src="icons/substack_logo.png" width="400" alt="substack_logo" class="icon-image">
                     </a>
 
-                    <a href="#resume" class="resume-link" id="resume-link">Resume &rarr;</a>
 
                 </div>
 

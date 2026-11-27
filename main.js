@@ -531,14 +531,17 @@
     renderGallery(portfolio.gallery);
     renderResume(portfolio.resume);
 
-    const resumeLink = document.getElementById('resume-link');
-    if (resumeLink) {
-        resumeLink.addEventListener('click', function (event) {
-            event.preventDefault();
-            switchTab('resume');
-            document.querySelector('.portfolio').scrollIntoView({ behavior: 'smooth' });
-        });
+    // Randomly pick blue or green as the hover color each time a button is entered
+    const hoverColors = ['#9DFBC1', '#84caff'];
+    function pickHoverColor(event) {
+        const target = event.target.closest && event.target.closest('button, a, .card');
+        if (!target) return;
+        if (event.type === 'mouseover' && target.contains(event.relatedTarget)) return;
+        target.style.setProperty('--hover-color', hoverColors[Math.floor(Math.random() * hoverColors.length)]);
     }
+    document.addEventListener('mouseover', pickHoverColor);
+    document.addEventListener('focusin', pickHoverColor);
+
     if (window.location.hash && tabOrder.indexOf(window.location.hash.slice(1)) !== -1) {
         switchTab(window.location.hash.slice(1));
     }
