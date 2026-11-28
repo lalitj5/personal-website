@@ -208,6 +208,24 @@ const portfolio = {
     // Fields: id, title, teaser, description, url, date ("YYYY-MM-DD"), optional previewImage
     essays: [
     {
+        "id": "consequences",
+        "title": "Can we keep Executives to their word? (Soon)",
+        "teaser": "These are hypothetical scenarios of future behavior.",
+        "description": "If regulations are placed on Frontier Labs tomorrow to slow down capabilities research, how can we ensure that they are following through on their word?",
+        "url": "",
+        "previewImage": "previews/example-article.svg",
+        "date": "2026-12-04"
+    },
+    {
+        "id": "ozone-layer",
+        "title": "Ozone Policy is a Good Proxy for AI Safety (Soon)",
+        "teaser": "Ozone Policy is a Good Proxy for AI Safety.",
+        "description": "Brief discussion of how the ozone layer governance was created and parallels for AI Safety policy",
+        "url": "",
+        "previewImage": "previews/example-article.svg",
+        "date": "2026-11-29"
+    },
+    {
         "id": "subliminal-learning",
         "title": "Subliminal Learning, Simply Explained",
         "teaser": "Subliminal Learning, Simply Explained.",
